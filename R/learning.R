@@ -8,6 +8,8 @@ summary(airquality)
 
 1 + 1
 
+
+
 mean(2:6)
 
 
