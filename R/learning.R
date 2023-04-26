@@ -17,4 +17,5 @@ mean(2:6)
 
 library(tidyverse)
 
-
+# This will be used for testing out git
+# Heres an example of a conflict
