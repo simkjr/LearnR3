@@ -65,5 +65,86 @@ Team Easy on og Bjarne i @team-easy-on-bjarne!
 
 ![Team Easy on](images/teo.png){#team-easy-on-bjarne width="110%" height="110%"}
 
+## Visualizing data
+```{r}
+# Create histogram for BMI
+ggplot(nhanes_small, aes(x = bmi)) +
+  geom_histogram()
+```
+
+```{r}
+# Create histogram for BMI without missing values
+ggplot(nhanes_small, aes(x = bmi)) +
+  geom_histogram(na.rm = TRUE)
+```
 
 
+
+```{r}
+# Creating a histogram without missing values for BMI under 60
+nhanes_small %>%
+  filter(bmi <= 60) %>%
+  ggplot(aes(x = bmi)) +
+  geom_histogram(na.rm = TRUE)
+```
+BMI distribution in NHANES dataset was visualized in @fig-bmi-histo
+```{r}
+#| fig-cap: "Distribution of BMI."
+#| label: fig-bmi-histo
+
+nhanes_small %>%
+  filter(bmi <= 60) %>%
+  ggplot(aes(x = bmi)) +
+  geom_histogram(na.rm = TRUE)
+```
+
+
+
+```{r}
+# Create count barplot for education
+ggplot(nhanes_small, aes(x = education)) +
+  geom_bar()
+```
+
+```{r}
+# Create count barplot for diabetes status
+ggplot(nhanes_small, aes(x = diabetes)) +
+  geom_bar()
+```
+
+```{r}
+# Create count barplot for diabetes status without NA variables
+nhanes_small %>%
+  filter(!is.na(diabetes)) %>%
+  ggplot(aes(x = diabetes)) +
+  geom_bar()
+```
+
+```{r}
+# Create count barplot for education status without NA variables
+nhanes_small %>%
+  filter(!is.na(education)) %>%
+  ggplot(aes(x = education)) +
+  geom_bar()
+```
+
+
+
+```{r}
+#| label: fig-diabetes-education
+#| fig-cap: "Counts of diabetes and education in NHANES"
+#| fig-subcap:
+#|   - "Number of those with or without diabetes"
+#|   - "Number of those with different educational status"
+#| layout-ncol: 2
+
+nhanes_small %>%
+  filter(!is.na(diabetes)) %>%
+  ggplot(aes(x = diabetes)) +
+  geom_bar()
+
+nhanes_small %>%
+  filter(!is.na(education)) %>%
+  ggplot(aes(x = education)) +
+  geom_bar()
+```
